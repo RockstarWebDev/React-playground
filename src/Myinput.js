@@ -9,14 +9,13 @@ export default function Myinput(){
         setText(e.target.value);
         console.log(e);
     }
+ 
 
     return(
         <div>
             <input id="test" className="Testclass" type="text" value={text} onChange={handleText} />
             <p>You typed {text}</p>
-            <button onClick={() => setText('hello')}>
-        Reset
-      </button>
+            <button onClick={() => setText('hello')}> Reset </button>
         </div>
     );
 }
