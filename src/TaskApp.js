@@ -1,3 +1,4 @@
+
 import { useReducer } from "react";
 import TaskList from "./TaskList";
 import TaskAdd from "./TaskAdd";
@@ -12,7 +13,18 @@ function taskReducer(tasks, action) {
            text: action.text,
            done:false}
         ];
+      }case "Changed": { 
+           return tasks.map(t=>{
+            if(t.id === action.task.id){
+              return action.task;
+            }else{
+              return t;
+            }
+           })
+      }case "Deleted": {
+        return tasks.filter(t=>t.id !== action.id);
       }
+  
       default: {
         throw Error('Unknown action: ' + action.type);
       }
@@ -33,11 +45,19 @@ function taskReducer(tasks, action) {
       });
     }
 
+   function handleChangeTask(task) {
+    dispatch({ type: 'Changed', task:task });
+   }
+
+   function handleDeleteTask(taskId) {
+    dispatch({ type: 'Deleted', id:taskId });
+   }
+
     return(
       <div>
       <h1>Todo List with useReducer</h1>
-      <TaskAdd onAddTask={handleAddTask}/>
-      <TaskList tasks={tasks}/>
+      <TaskAdd onAddTask={handleAddTask} />
+      <TaskList tasks={tasks} onChangeTask={handleChangeTask} onDeleteTask={handleDeleteTask}/>
       </div>
     )
   }
