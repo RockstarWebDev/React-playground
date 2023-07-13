@@ -5,6 +5,7 @@ import Counter from "./ReducerAge";
 import Form from "./FrmReducer";
 import TaskApp from "./TaskApp";
 import MemoApp from "./memoApp";
+import UseMemoSum from "./UseMemoSum";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
      <Counter />  */}
       {/* <Form /> */}
       {/* <TaskApp /> */}
-      <MemoApp />
+      {/* <MemoApp /> */}
+      <UseMemoSum />
     </div>
   );
 }
